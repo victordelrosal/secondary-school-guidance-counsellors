@@ -317,34 +317,6 @@
   .purple { color: var(--purple); }
   .red { color: var(--red); }
 
-  /* Demo slot machine (mirrors AI Innovator aesthetic) */
-  .demo-slot-col { display:flex; flex-direction:column; align-items:center; gap:8px; }
-  .demo-slot-label { font-size:0.55rem; font-weight:600; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; }
-  .demo-slot-window {
-    width:120px; height:160px; border-radius:8px; overflow:hidden; position:relative;
-    background: linear-gradient(180deg, #050508 0%, #0c0c14 10%, #181824 24%, #222234 35%, #262639 50%, #222234 65%, #181824 76%, #0c0c14 90%, #050508 100%);
-    box-shadow: inset 0 15px 30px rgba(0,0,0,0.9), inset 0 -15px 30px rgba(0,0,0,0.9), inset 4px 0 12px rgba(0,0,0,0.5), inset -4px 0 12px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.6);
-  }
-  .demo-slot-window::before, .demo-slot-window::after {
-    content:''; position:absolute; left:0; right:0; z-index:2; pointer-events:none;
-  }
-  .demo-slot-window::before { top:0; height:60px; background:linear-gradient(to bottom, rgba(5,5,8,1) 0%, rgba(12,12,20,0.7) 50%, transparent 100%); border-radius:8px 8px 0 0; }
-  .demo-slot-window::after { bottom:0; height:60px; background:linear-gradient(to top, rgba(5,5,8,1) 0%, rgba(12,12,20,0.7) 50%, transparent 100%); border-radius:0 0 8px 8px; }
-  /* Specular highlight */
-  .demo-slot-inner {
-    position:absolute; inset:0; border-radius:8px; z-index:3; pointer-events:none;
-    background: linear-gradient(180deg, transparent 38%, rgba(255,255,255,0.03) 44%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 56%, transparent 62%), linear-gradient(90deg, rgba(0,0,0,0.3) 0%, transparent 8%, transparent 92%, rgba(0,0,0,0.3) 100%);
-  }
-  /* Focus line */
-  .demo-focus-line {
-    position:absolute; left:0; right:0; top:50%; height:54px; transform:translateY(-50%);
-    border-top:1.5px solid rgba(124,77,255,0.12); border-bottom:1.5px solid rgba(124,77,255,0.12);
-    z-index:4; pointer-events:none; background:rgba(124,77,255,0.015);
-  }
-  .demo-reel { position:absolute; left:0; right:0; display:flex; flex-direction:column; align-items:center; transition:none; }
-  .demo-reel-item { width:100%; height:54px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
-  .demo-slot-window.locked { box-shadow: inset 0 15px 30px rgba(0,0,0,0.9), inset 0 -15px 30px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.6); }
-
   /* Title slide animations */
   @keyframes fadeSlideDown {
     from { opacity: 0; transform: translateY(-30px); }
@@ -403,8 +375,8 @@
   <div class="content" style="z-index:2;">
     <!-- Decorative top line -->
     <div style="width:60px; height:2px; background:linear-gradient(90deg, transparent, var(--gold), transparent); margin-bottom:24px; animation: fadeSlideDown 1s ease 0.2s both;"></div>
-    <h1 class="hero-text" style="font-size:5rem; letter-spacing:-2px; animation: fadeSlideDown 1s ease 0.4s both;">
-      The Power of <span style="background:linear-gradient(135deg, #c9a84c 0%, #e2c87a 40%, #c9a84c 60%, #a88832 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Curiosity</span>
+    <h1 class="hero-text" style="font-size:4.25rem; letter-spacing:-2px; line-height:1.05; animation: fadeSlideDown 1s ease 0.4s both;">
+      The Power of<br><span style="font-size:5.5rem; background:linear-gradient(135deg, #c9a84c 0%, #e2c87a 40%, #c9a84c 60%, #a88832 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Curiosity</span>
     </h1>
     <div style="font-size:2rem; font-weight:200; letter-spacing:6px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; animation: fadeSlideUp 1s ease 0.7s both;">in the age of AI</div>
     <!-- Decorative bottom line -->
@@ -421,28 +393,10 @@
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 2: AI INNOVATOR SHOWROOM (INTERACTIVE) -->
+<!-- SLIDE 2: AI INNOVATOR (LIVE EMBED) -->
 <!-- ============================================================ -->
-<div class="slide slide-text" data-slide="2" data-type="text" style="padding:0; background:var(--bg);">
-  <div class="content" style="height:100%; width:100%; padding:40px 60px;">
-    <h2 style="font-size:2.2rem; font-weight:800; letter-spacing:-1px; margin-bottom:4px;">The AI Innovator</h2>
-    <p style="font-size:0.75rem; color:var(--text-dim); margin-bottom:24px;">Select your ingredients or spin the reels. Then hit Go.</p>
-    <!-- Slot machine -->
-    <div style="display:flex; gap:12px; align-items:flex-end; justify-content:center; margin-bottom:20px;">
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px;" id="demoSlotsGrid"></div>
-      <!-- Lever -->
-      <div style="display:flex; flex-direction:column; align-items:center; margin-left:12px; cursor:pointer;" onclick="demoSpin()">
-        <div id="demoLeverBall" style="width:30px; height:30px; border-radius:50%; background:radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b); box-shadow:0 4px 12px rgba(192,57,43,0.5); transition:transform 0.3s ease;"></div>
-        <div id="demoLeverArm" style="width:6px; height:65px; background:linear-gradient(to right, #7f8c8d, #bdc3c7, #7f8c8d); border-radius:3px; transition:height 0.15s ease;"></div>
-        <div style="width:20px; height:10px; background:linear-gradient(to right, #5a5a5a, #7f8c8d, #5a5a5a); border-radius:0 0 5px 5px;"></div>
-      </div>
-    </div>
-    <!-- GO button area -->
-    <div id="demoGoSection" style="opacity:0; transition:opacity 0.5s; margin-bottom:16px;">
-      <div style="display:inline-block; padding:10px 40px; border-radius:8px; background:linear-gradient(135deg, #00e676, #00c853); color:#0a0a0f; font-weight:800; font-size:1.2rem; letter-spacing:2px; box-shadow:0 0 30px rgba(0,230,118,0.3);">GO</div>
-    </div>
-    <p style="font-size:1.5rem; font-weight:700;">446 emojis. 2.1 billion combinations. <span class="gold">8 steps.</span></p>
-  </div>
+<div class="slide slide-text" data-slide="2" data-type="text" style="padding:0; background:#0a0a0f;">
+  <iframe id="aiInnovatorFrame" src="about:blank" data-src="https://victordelrosal.com/ai-innovator/" style="width:100%; height:100%; border:none; position:absolute; top:0; left:0;" allow="autoplay"></iframe>
 </div>
 
 <!-- ============================================================ -->
@@ -983,6 +937,9 @@
     // Footer: show on all except slide 1
     document.getElementById('globalFooter').style.display = current === 0 ? 'none' : 'block';
 
+    // Lazy-load AI Innovator iframe
+    loadIframeIfNeeded();
+
     // NCI logo: show on title slide and text/diagram slides, hide on other image slides
     const slideType = slides[current].dataset.type;
     const nciLogo = document.getElementById('nciLogo');
@@ -1088,112 +1045,13 @@
     if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
   });
 
-  // ===== DEMO SLOT MACHINE (AI Innovator showroom) =====
-  (function(){
-    const DEMO_CATS = [
-      { label:'COUNTRY', emojis:['🇲🇽','🇯🇵','🇮🇪','🇧🇷','🇫🇷','🇮🇳','🇰🇷','🇮🇹','🇩🇪','🇪🇸','🇬🇧','🇺🇸','🇨🇦','🇦🇺','🇳🇬','🇰🇪','🇿🇦','🇪🇬','🇹🇭','🇻🇳'] },
-      { label:'FRUIT',   emojis:['🍎','🍊','🍋','🍇','🍓','🍑','🍒','🥝','🍍','🍌','🫐','🥭','🍈','🍐','🥥','🍅','🫒','🥑','🌶️','🌽'] },
-      { label:'ANIMAL',  emojis:['🐶','🐱','🦊','🐻','🐼','🦁','🐯','🐸','🦋','🐬','🦅','🐙','🦄','🐧','🐘','🦒','🐺','🦈','🦉','🐢'] },
-      { label:'ACTION',  emojis:['🕺🏻','🏄','🧗','🎤','🎨','🏃','🧘','🎸','📸','✍️','🤿','🎭','🪂','🏋️','⛷️','🚴','🏊','🧑‍🍳','🧑‍🚀','🧑‍💻'] },
-      { label:'WILD CARD', emojis:['🎲','🔮','🧩','🎪','🛸','💎','🌋','🧲','🎯','⚡','🌈','🔥','💫','🌊','🎵','🪄','🏆','❤️‍🔥','🧬','🌍'] }
-    ];
-    const ITEM_H = 54;
-    const WIN_H = 160;
-    const demoReels = [];
-    let demoSpinning = false;
-
-    function buildDemoSlots() {
-      const grid = document.getElementById('demoSlotsGrid');
-      if (!grid) return;
-      DEMO_CATS.forEach((cat, ci) => {
-        const col = document.createElement('div');
-        col.className = 'demo-slot-col';
-        const label = document.createElement('div');
-        label.className = 'demo-slot-label';
-        label.textContent = cat.label;
-        col.appendChild(label);
-
-        const win = document.createElement('div');
-        win.className = 'demo-slot-window';
-
-        const focusLine = document.createElement('div');
-        focusLine.className = 'demo-focus-line';
-        win.appendChild(focusLine);
-
-        const inner = document.createElement('div');
-        inner.className = 'demo-slot-inner';
-        win.appendChild(inner);
-
-        const reel = document.createElement('div');
-        reel.className = 'demo-reel';
-        const repeats = 6;
-        for (let r = 0; r < repeats; r++) {
-          cat.emojis.forEach(e => {
-            const d = document.createElement('div');
-            d.className = 'demo-reel-item';
-            d.textContent = e;
-            reel.appendChild(d);
-          });
-        }
-        win.appendChild(reel);
-        col.appendChild(win);
-        grid.appendChild(col);
-
-        const offset = Math.floor(Math.random() * cat.emojis.length);
-        const centerOffset = (WIN_H / 2) - (ITEM_H / 2);
-        reel.style.top = (centerOffset - offset * ITEM_H) + 'px';
-        demoReels.push({ reel, win, items: cat.emojis.length });
-      });
+  // ===== LAZY-LOAD AI INNOVATOR IFRAME =====
+  function loadIframeIfNeeded() {
+    const frame = document.getElementById('aiInnovatorFrame');
+    if (frame && frame.src === 'about:blank' && current === 1) {
+      frame.src = frame.dataset.src;
     }
-
-    window.demoSpin = function() {
-      if (demoSpinning) return;
-      demoSpinning = true;
-      const ball = document.getElementById('demoLeverBall');
-      const arm = document.getElementById('demoLeverArm');
-      if (ball) ball.style.transform = 'translateY(40px)';
-      if (arm) arm.style.height = '25px';
-      setTimeout(() => { if (ball) ball.style.transform = ''; if (arm) arm.style.height = '65px'; }, 300);
-
-      document.getElementById('demoGoSection').style.opacity = '0';
-
-      const targets = DEMO_CATS.map(c => Math.floor(Math.random() * c.emojis.length));
-      const centerOffset = (WIN_H / 2) - (ITEM_H / 2);
-
-      demoReels.forEach((r, ci) => {
-        r.win.classList.remove('locked');
-        const targetIdx = r.items * 3 + targets[ci];
-        const targetTop = centerOffset - targetIdx * ITEM_H;
-        const duration = 1.4 + ci * 0.45 + Math.random() * 0.3;
-        const delay = Math.random() * 200;
-
-        setTimeout(() => {
-          r.reel.style.transition = 'top ' + duration + 's cubic-bezier(0.12, 0.8, 0.3, 1)';
-          requestAnimationFrame(() => { r.reel.style.top = targetTop + 'px'; });
-
-          setTimeout(() => {
-            r.win.classList.add('locked');
-            r.reel.style.transition = 'none';
-            if (ci === DEMO_CATS.length - 1) {
-              demoSpinning = false;
-              document.getElementById('demoGoSection').style.opacity = '1';
-              // Auto-reset after 3s
-              setTimeout(() => {
-                document.getElementById('demoGoSection').style.opacity = '0';
-                demoReels.forEach((dr, i) => {
-                  dr.win.classList.remove('locked');
-                  const newOffset = Math.floor(Math.random() * DEMO_CATS[i].emojis.length);
-                  dr.reel.style.top = (centerOffset - newOffset * ITEM_H) + 'px';
-                });
-              }, 3000);
-            }
-          }, duration * 1000 + 100);
-        }, delay);
-      });
-    };
-
-    buildDemoSlots();
-  })();
+  }
 
   // ===== QR CODE (simple visual placeholder) =====
   (function(){
