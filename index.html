@@ -404,6 +404,16 @@
     0%, 100% { opacity: 0; transform: scale(0); }
     50% { opacity: 1; transform: scale(1); }
   }
+  @keyframes kenBurnsBg {
+    0%   { transform: scale(1)    translateX(0); }
+    50%  { transform: scale(1.12) translateX(-2%); }
+    100% { transform: scale(1)    translateX(0); }
+  }
+  @keyframes kenBurnsFg {
+    0%   { transform: scale(1)   translateX(0); }
+    50%  { transform: scale(1.02) translateX(0.5%); }
+    100% { transform: scale(1)   translateX(0); }
+  }
 </style>
 </head>
 <body>
@@ -773,9 +783,12 @@
 <!-- CURIOSITY 3: FARM DASHBOARD (BUILD) -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c3" data-type="img">
-  <img class="bg" src="img/curiosity-03-farm.jpg" alt="" style="animation: kenBurns 16s ease-in-out infinite;">
-  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
-  <div class="content bottom-left" style="max-width:75%;">
+  <!-- Background layer: zooms + pans more for depth -->
+  <img class="bg" src="img/curiosity-03-farm.jpg" alt="" style="animation: kenBurnsBg 16s ease-in-out infinite;">
+  <!-- Foreground layer: boy silhouette, barely moves -->
+  <img src="img/curiosity-03-farm-silh.png" alt="" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; pointer-events:none; animation: kenBurnsFg 16s ease-in-out infinite;">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%); z-index:2;"></div>
+  <div class="content bottom-left" style="max-width:75%; z-index:3;">
     <div style="font-size:0.7rem; color:var(--green); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Builder</div>
     <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">He built a dashboard that pulls weather and soil data to alert his da when conditions put cattle at risk. Never took a coding class.</p>
     <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Boy, 16 &middot; Roscommon &middot; Agriculture &middot; Rural &middot; Build</p>
