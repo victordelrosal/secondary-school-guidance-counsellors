@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
 <title>The Power of Curiosity in the Age of AI - Victor del Rosal</title>
+<link rel="stylesheet" href="https://victordelrosal.com/css/style.css" id="main-site-css">
+<script src="https://victordelrosal.com/js/supabase-config.js"></script>
+<script src="https://victordelrosal.com/js/supabase-client.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&display=swap');
 
@@ -999,7 +1002,8 @@
   <!-- Title: top left -->
   <p style="position:absolute; top:50px; left:70px; z-index:2; font-size:1.4rem; font-weight:600; color:var(--gold); text-shadow:0 2px 15px rgba(0,0,0,0.6);">The question really becomes...</p>
   <div class="content">
-    <p style="font-size:2.2rem; font-weight:400; font-style:italic; font-family:'Times New Roman', Times, serif; color:var(--text); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.4; animation: kenBurns 5s ease-in-out infinite;">What matters to you<br>and how can AI help you<br>achieve it?</p>
+    <p class="reveal-card" data-reveal="1" style="opacity:0; transform:translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; font-size:2.8rem; font-weight:400; font-style:italic; font-family:'Times New Roman', Times, serif; color:var(--text); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.3; animation: kenBurns 5s ease-in-out infinite;">What matters to you?</p>
+    <p class="reveal-card" data-reveal="2" style="opacity:0; transform:translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; font-size:1.6rem; font-weight:400; font-style:italic; font-family:'Times New Roman', Times, serif; color:var(--text-muted); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.4; margin-top:16px;">How can AI help you achieve it?</p>
   </div>
 </div>
 
@@ -1018,6 +1022,8 @@
 <!-- SLIDE 28: THANK YOU (COVER MIRROR) -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="28" data-type="img">
+  <!-- Navbar from main site -->
+  <div id="navbar-container" data-active-link="none" style="position:absolute; top:0; left:0; width:100%; z-index:10;"></div>
   <img class="bg" src="img/compass.jpg" alt="" style="filter:brightness(0.3) saturate(0.6);">
   <div class="scrim" style="background:radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.08) 0%, rgba(15,15,26,0.85) 70%);"></div>
   <canvas id="endParticles" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none;"></canvas>
@@ -1326,6 +1332,7 @@
     draw();
   })();
 </script>
+<script src="https://victordelrosal.com/js/navbar.js"></script>
 
 </body>
 </html>
