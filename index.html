@@ -358,6 +358,23 @@
 </head>
 <body>
 
+<!-- MOBILE LANDING PAGE -->
+<div id="mobileLanding" style="display:none; min-height:100vh; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; padding:40px 28px; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+  <div style="width:50px; height:2px; background:linear-gradient(90deg, transparent, var(--gold), transparent); margin-bottom:24px;"></div>
+  <h1 style="font-size:1.8rem; font-weight:800; line-height:1.2; letter-spacing:-0.5px;">The Power of <span style="color:var(--gold);">Curiosity</span></h1>
+  <p style="font-size:0.95rem; font-weight:200; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-top:8px;">in the age of AI</p>
+  <div style="width:80px; height:1px; background:linear-gradient(90deg, transparent, var(--gold), transparent); margin:24px 0;"></div>
+  <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.6;">A presentation by <strong style="color:var(--text);">Victor del Rosal</strong><br>NCI Spencer Dock &middot; 14 April 2026</p>
+  <div style="margin-top:32px; background:white; border-radius:12px; padding:12px; display:inline-block;">
+    <img src="img/qr-ssgc.png" alt="QR" style="width:160px; height:160px;">
+  </div>
+  <p style="font-size:1.1rem; font-weight:700; color:var(--gold); margin-top:16px;">vdr.me/ssgc</p>
+  <a href="https://www.linkedin.com/in/victordelrosal/" target="_blank" style="display:inline-block; margin-top:28px; padding:14px 32px; background:rgba(10,102,194,0.2); border:1px solid #0a66c2; border-radius:30px; color:#0a66c2; font-size:0.85rem; font-weight:600; text-decoration:none; letter-spacing:1px;">Connect on LinkedIn</a>
+  <a href="?desktop=1" style="display:inline-block; margin-top:14px; padding:14px 32px; background:rgba(201,168,76,0.15); border:1px solid var(--gold); border-radius:30px; color:var(--gold); font-size:0.85rem; font-weight:600; text-decoration:none; letter-spacing:1px;">View full slides</a>
+  <p style="font-size:0.7rem; color:var(--text-dim); margin-top:12px;">Slides best experienced on desktop</p>
+</div>
+
+<div id="slidesDeck">
 <div class="gold-line"></div>
 <div class="slide-counter"><span id="current">1</span> / <span id="total"></span></div>
 <div id="thumbStrip"></div>
@@ -1330,6 +1347,16 @@
     window.addEventListener('resize', () => { resize(); });
     init();
     draw();
+  })();
+</script>
+</div><!-- /slidesDeck -->
+
+<script>
+  // Mobile detection: show landing page on narrow screens
+  (function(){
+    const isMobile = window.innerWidth < 768 && !new URLSearchParams(window.location.search).has('desktop');
+    document.getElementById('mobileLanding').style.display = isMobile ? 'flex' : 'none';
+    document.getElementById('slidesDeck').style.display = isMobile ? 'none' : 'block';
   })();
 </script>
 <script src="https://victordelrosal.com/js/navbar.js"></script>
