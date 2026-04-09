@@ -939,8 +939,13 @@
     // Footer: show on all except slide 1
     document.getElementById('globalFooter').style.display = current === 0 ? 'none' : 'block';
 
-    // Lazy-load AI Innovator iframe
-    loadIframeIfNeeded();
+    // Lazy-load AI Innovator iframe when on slide, kill it when leaving
+    const aiFrame = document.getElementById('aiInnovatorFrame');
+    if (current === 1) {
+      loadIframeIfNeeded();
+    } else if (aiFrame && aiFrame.src !== 'about:blank') {
+      aiFrame.src = 'about:blank';
+    }
 
     // NCI logo: show on title slide and text/diagram slides, hide on other image slides
     const slideType = slides[current].dataset.type;
