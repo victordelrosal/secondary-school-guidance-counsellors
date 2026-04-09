@@ -299,7 +299,7 @@
   /* NCI logo (text/diagram slides only) */
   .nci-logo {
     position: fixed; top: 20px; left: 24px; height: 50px;
-    pointer-events: none; z-index: 100; transition: opacity 0.3s;
+    pointer-events: none; z-index: 100; transition: opacity 0.3s, height 0.4s ease, top 0.4s ease;
   }
 
   /* Footer */
@@ -337,7 +337,7 @@
 <div class="gold-line"></div>
 <div class="slide-counter"><span id="current">1</span> / <span id="total"></span></div>
 <div id="thumbStrip"></div>
-<img class="nci-logo" id="nciLogo" src="National_College_of_Ireland_Logo_2025.png" alt="">
+<img class="nci-logo" id="nciLogo" src="National_College_of_Ireland_Logo_2025.png" alt="" style="height:100px; top:28px; opacity:0.67;">
 <div id="globalFooter" style="display:none;">Victor del Rosal &middot; NCI Spencer Dock &middot; 14 April 2026</div>
 
 <div class="deck">
@@ -872,7 +872,16 @@
 
     // NCI logo: show on title slide and text/diagram slides, hide on other image slides
     const slideType = slides[current].dataset.type;
-    document.getElementById('nciLogo').style.opacity = (current === 0 || slideType !== 'img') ? '1' : '0';
+    const nciLogo = document.getElementById('nciLogo');
+    if (current === 0) {
+      nciLogo.style.opacity = '0.67';
+      nciLogo.style.height = '100px';
+      nciLogo.style.top = '28px';
+    } else {
+      nciLogo.style.height = '50px';
+      nciLogo.style.top = '20px';
+      nciLogo.style.opacity = slideType !== 'img' ? '1' : '0';
+    }
 
     // Elephant sound
     const elephantSnd = document.getElementById('elephantSound');
