@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<title>The Power of Curiosity in the Age of AI - Victor del Rosal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f0f1a;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --gold: #c9a84c;
+    --gold-light: #e2c87a;
+    --blue: #3b82f6;
+    --green: #22c55e;
+    --orange: #f97316;
+    --purple: #8b5cf6;
+    --red: #ef4444;
+  }
+
+  html { font-size: 32px; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .deck { height: 100vh; width: 100vw; position: relative; }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .slide.active { display: flex; }
+
+  /* ===== IMAGE SLIDES ===== */
+  .slide-img {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-img .bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .slide-img .scrim {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(15, 15, 26, 0.55);
+    z-index: 1;
+  }
+
+  .slide-img .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 60px 80px;
+  }
+
+  .slide-img .content.bottom-left {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    padding-bottom: 80px;
+  }
+
+  .slide-img .content.bottom-center {
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 80px;
+  }
+
+  /* ===== TEXT SLIDES ===== */
+  .slide-text {
+    padding: 60px 80px;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .slide-text .watermark {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    height: 100vh; width: 100vw;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+    object-fit: cover;
+  }
+
+  .slide-text .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  /* ===== DIAGRAM SLIDES ===== */
+  .slide-diagram {
+    padding: 50px 70px;
+    position: relative;
+  }
+
+  .slide-diagram .watermark {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    height: 100vh; width: 100vw;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 0;
+    object-fit: cover;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .hero-text {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+  }
+
+  .hero-sub {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 16px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  .zen-text {
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--text-muted);
+    max-width: 800px;
+  }
+
+  .zen-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .zen-big {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+  }
+
+  .zen-gold {
+    color: var(--gold);
+  }
+
+  .section-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--gold);
+  }
+
+  .source {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 12px;
+  }
+
+  /* ===== REVEAL CARDS (diagram slides only) ===== */
+  .bar-anim-down {
+    transform: scaleY(0); transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .bar-anim-up {
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .bar-anim-right {
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ===== CARDS ===== */
+  .card-row { display: flex; gap: 24px; margin-top: 24px; }
+
+  .card {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); max-width: none; }
+
+  /* ECHO5 */
+  .echo-phase { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 18px; }
+
+  .echo-marker {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1rem; color: white; flex-shrink: 0;
+  }
+
+  .echo-content h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+  .echo-content .prompt { font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
+  .echo-content .cct { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
+
+  /* Capabilities grid */
+  .cap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+
+  .cap-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .cap-item h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .cap-item p { font-size: 0.85rem; line-height: 1.45; color: var(--text-muted); max-width: none; }
+
+  /* Consumer vs Builder */
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
+
+  .vs-side h4 { font-size: 1.6rem; margin-bottom: 16px; font-weight: 700; }
+
+  .vs-side ul {
+    list-style: none; font-size: 1rem; line-height: 2.2; color: var(--text-muted);
+  }
+
+  .vs-side ul li::before {
+    content: ''; display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; margin-right: 12px; vertical-align: middle;
+  }
+
+  .vs-consumer ul li::before { background: var(--red); }
+  .vs-builder ul li::before { background: var(--green); }
+
+  /* ===== NAV ===== */
+  .slide-counter {
+    position: fixed; bottom: 24px; left: 30px;
+    font-size: 0.7rem; color: var(--text-dim); z-index: 100;
+  }
+
+  .gold-line {
+    position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+    z-index: 100;
+  }
+
+  /* Thumb strip */
+  #thumbStrip {
+    position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4px; z-index: 200; opacity: 0.35;
+    transition: opacity 0.3s ease;
+  }
+  #thumbStrip:hover { opacity: 1; }
+
+  /* NCI logo (text/diagram slides only) */
+  .nci-logo {
+    position: fixed; top: 20px; left: 24px; height: 50px;
+    pointer-events: none; z-index: 100; transition: opacity 0.3s;
+  }
+
+  /* Footer */
+  #globalFooter {
+    position: fixed; bottom: 14px; left: 0; width: 100%;
+    text-align: center; font-size: 11px; letter-spacing: 2.5px;
+    color: var(--text-muted); opacity: 0.15; pointer-events: none; z-index: 100;
+  }
+
+  /* Colour helpers */
+  .gold { color: var(--gold); }
+  .blue { color: var(--blue); }
+  .green { color: var(--green); }
+  .orange { color: var(--orange); }
+  .purple { color: var(--purple); }
+  .red { color: var(--red); }
+</style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+<div class="slide-counter"><span id="current">1</span> / <span id="total"></span></div>
+<div id="thumbStrip"></div>
+<img class="nci-logo" id="nciLogo" src="National_College_of_Ireland_Logo_2025.png" alt="">
+<div id="globalFooter" style="display:none;">Victor del Rosal &middot; NCI Spencer Dock &middot; 14 April 2026</div>
+
+<div class="deck">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: TITLE (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img active" data-slide="1" data-type="img">
+  <img class="bg" src="img/compass.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.65);"></div>
+  <div class="content">
+    <h1 class="hero-text" style="font-size:4.5rem;">The Power of Curiosity<br><span style="font-size:2.2rem; font-weight:300; letter-spacing:2px;">in the age of AI</span></h1>
+    <div style="margin-top:24px; font-size:0.95rem; color:var(--text-muted); letter-spacing:1px;">Presentation for Secondary School Guidance Counsellors</div>
+    <div style="margin-top:30px; font-size:0.85rem; color:var(--text-dim);">Victor del Rosal &middot; NCI Spencer Dock &middot; 14 April 2026</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: AI INNOVATOR EMPTY (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="5" data-type="img">
+  <img class="bg" src="ai-innovator-empty.png" alt="" style="object-position:top;">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.85) 0%, rgba(15,15,26,0.2) 50%, transparent 100%);"></div>
+  <div class="content bottom-center">
+    <p style="font-size:1.8rem; font-weight:700; text-shadow:0 4px 30px rgba(0,0,0,0.8);">446 emojis. 2.1 billion combinations. <span class="gold">8 steps.</span></p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: AI INNOVATOR SPUN (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="6" data-type="img">
+  <img class="bg" src="ai-innovator-spun.png" alt="" style="object-position:top;">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.85) 0%, rgba(15,15,26,0.2) 50%, transparent 100%);"></div>
+  <div class="content bottom-center">
+    <p style="font-size:2rem; font-weight:700; text-shadow:0 4px 30px rgba(0,0,0,0.8);">I need <span class="gold">five volunteers.</span></p>
+    <p style="font-size:0.9rem; color:var(--text-dim); margin-top:8px;">One emoji each.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: THE ELEPHANT (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="8" data-type="img">
+  <audio id="elephantSound" src="elephant-sound.mp3" preload="auto"></audio>
+  <img class="bg" src="elephant-room.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.6);"></div>
+  <div class="content">
+    <div class="section-label" style="color:var(--text-muted);">Section 1</div>
+    <h1 class="hero-text" style="font-size:4rem;">The Elephant</h1>
+    <p class="hero-sub">in the room</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: 2020 (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="9" data-type="img">
+  <img class="bg" src="img/typewriter.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="content">
+    <div style="font-size:1.2rem; color:var(--gold); font-weight:700; letter-spacing:3px;">2020</div>
+    <h1 class="hero-text" style="margin-top:12px;">Unreliable intern</h1>
+    <p class="hero-sub">Made things up. Could label a photo as "cat"<br>but couldn't hold a conversation.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: 2023 (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="10" data-type="img">
+  <img class="bg" src="img/graduation.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="content">
+    <div style="font-size:1.2rem; color:var(--gold); font-weight:700; letter-spacing:3px;">2023</div>
+    <h1 class="hero-text" style="margin-top:12px;">Capable graduate</h1>
+    <p class="hero-sub">90th percentile on the bar exam.<br>99th percentile on GRE Verbal.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11: 2026 (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="11" data-type="img">
+  <img class="bg" src="img/ai-workspace.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="content">
+    <div style="font-size:1.2rem; color:var(--gold); font-weight:700; letter-spacing:3px;">2026</div>
+    <h1 class="hero-text" style="margin-top:12px;">Junior employee</h1>
+    <p class="hero-sub">Researches, plans, and executes independently.<br>900 million weekly active users.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12: TEXT - FIVE YEARS -->
+<!-- ============================================================ -->
+<div class="slide slide-text" data-slide="12" data-type="text">
+  <img class="watermark" src="compass.png" alt="">
+  <div class="content">
+    <p class="zen-big zen-gold" style="font-size:5rem;">Five years.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 13: STANFORD DATA (DIAGRAM) -->
+<!-- ============================================================ -->
+<div class="slide slide-diagram" data-slide="13" data-type="diagram">
+  <img class="watermark" src="compass.png" alt="">
+  <h3>What the numbers say</h3>
+  <svg viewBox="0 0 960 480" width="100%" height="85%" preserveAspectRatio="xMidYMid meet" style="position:relative; z-index:1;">
+    <text x="480" y="40" text-anchor="middle" fill="#f8fafc" font-family="Inter" font-size="22" font-weight="800">Stanford: "Canaries in the Coal Mine"</text>
+    <line x1="80" y1="280" x2="880" y2="280" stroke="#334155" stroke-width="1.5"/>
+    <text x="70" y="285" text-anchor="end" fill="#64748b" font-family="Inter" font-size="12">0%</text>
+    <line x1="80" y1="190" x2="880" y2="190" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="5,5"/>
+    <line x1="80" y1="370" x2="880" y2="370" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="5,5"/>
+    <line x1="560" y1="80" x2="560" y2="430" stroke="#475569" stroke-width="1" stroke-dasharray="4,6"/>
+
+    <text x="200" y="420" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="11" font-weight="500">AI-exposed roles</text>
+    <text x="200" y="436" text-anchor="middle" fill="#ef4444" font-family="Inter" font-size="11" font-weight="700">ages 22-25</text>
+    <text x="420" y="420" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="11" font-weight="500">Software devs</text>
+    <text x="420" y="436" text-anchor="middle" fill="#ef4444" font-family="Inter" font-size="11" font-weight="700">ages 22-25</text>
+    <text x="720" y="420" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="11" font-weight="500">Same roles</text>
+    <text x="720" y="436" text-anchor="middle" fill="#22c55e" font-family="Inter" font-size="11" font-weight="700">ages 30+</text>
+
+    <!-- Bars (reveal) -->
+    <g class="reveal-card" data-reveal="1" style="opacity:0; transition: opacity 0.4s;">
+      <text x="200" y="270" text-anchor="middle" fill="#ef4444" font-family="Inter" font-size="28" font-weight="800">-16%</text>
+      <rect class="bar-anim-down" x="140" y="280" width="120" height="64" rx="6" fill="#ef4444" opacity="0.85"/>
+    </g>
+    <g class="reveal-card" data-reveal="2" style="opacity:0; transition: opacity 0.4s;">
+      <text x="420" y="270" text-anchor="middle" fill="#ef4444" font-family="Inter" font-size="28" font-weight="800">-20%</text>
+      <rect class="bar-anim-down" x="360" y="280" width="120" height="80" rx="6" fill="#ef4444" opacity="0.85"/>
+    </g>
+    <g class="reveal-card" data-reveal="3" style="opacity:0; transition: opacity 0.4s;">
+      <text x="720" y="158" text-anchor="middle" fill="#22c55e" font-family="Inter" font-size="28" font-weight="800">+6-13%</text>
+      <rect class="bar-anim-up" x="650" y="216" width="140" height="64" rx="6" fill="#22c55e" opacity="0.85"/>
+    </g>
+  </svg>
+  <div class="reveal-card" data-reveal="4" style="position:absolute; bottom:20px; left:0; right:0; text-align:center; opacity:0; transform:translateY(10px); transition: opacity 0.5s, transform 0.5s;">
+    <p class="source">Stanford Digital Economy Lab, ADP payroll data, August 2025</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 14: IRELAND (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="14" data-type="img">
+  <img class="bg" src="img/dublin.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.7);"></div>
+  <div class="content">
+    <p style="font-size:5rem; font-weight:900; color:var(--gold); text-shadow:0 4px 40px rgba(0,0,0,0.6);">63%</p>
+    <p style="font-size:1.4rem; font-weight:300; color:var(--text); margin-top:12px; text-shadow:0 2px 20px rgba(0,0,0,0.5);">of Irish jobs face significant AI exposure</p>
+    <p class="source" style="color:var(--text-dim); margin-top:20px;">Irish Department of Finance, February 2026</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15: GRADUATE ROLES (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="15" data-type="img">
+  <img class="bg" src="img/empty-office.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.65);"></div>
+  <div class="content">
+    <p style="font-size:5rem; font-weight:900; color:var(--red); text-shadow:0 4px 40px rgba(0,0,0,0.6);">-50%</p>
+    <p style="font-size:1.3rem; font-weight:300; color:var(--text); margin-top:12px; text-shadow:0 2px 20px rgba(0,0,0,0.5);">new graduate roles at the 15 largest tech companies</p>
+    <p class="source" style="color:var(--text-dim); margin-top:20px;">SignalFire, 650M+ professional profiles</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 16: TEXT -->
+<!-- ============================================================ -->
+<div class="slide slide-text" data-slide="16" data-type="text">
+  <img class="watermark" src="compass.png" alt="">
+  <div class="content">
+    <p class="zen-text" style="font-size:2rem;">These are the students sitting<br>in your offices <strong>right now.</strong></p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 17: ENCROACHMENT (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="17" data-type="img">
+  <img class="bg" src="img/escalator.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.6);"></div>
+  <div class="content">
+    <h1 class="hero-text" style="font-size:3rem;">The floor keeps moving.</h1>
+    <p class="hero-sub" style="max-width:700px; margin-top:20px;">A job created by AI, automated by improved AI,<br>in approximately two years.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 18: SECTION 2 (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="18" data-type="img">
+  <img class="bg" src="img/mentor.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.6);"></div>
+  <div class="content">
+    <div class="section-label" style="color:var(--text-muted);">Section 2</div>
+    <h1 class="hero-text" style="font-size:2.8rem;">Your work has never been<br>about tasks.</h1>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 19: TEXT - RELATIONSHIPS -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="19" data-type="img">
+  <img class="bg" src="img/mentor.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.7);"></div>
+  <div class="content">
+    <p class="zen-big zen-gold" style="font-size:5rem; text-shadow:0 4px 40px rgba(0,0,0,0.6);">Relationships.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 20: CONSUMER VS BUILDER (DIAGRAM) -->
+<!-- ============================================================ -->
+<div class="slide slide-diagram" data-slide="20" data-type="diagram">
+  <img class="watermark" src="compass.png" alt="">
+  <h3>A new diagnostic</h3>
+  <div class="vs-grid" style="flex:1; position:relative; z-index:1;">
+    <div class="vs-side vs-consumer reveal-card" data-reveal="1" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+      <h4 class="red">The Consumer</h4>
+      <ul>
+        <li>Uses AI to avoid effort</li>
+        <li>Gets essays written, problems solved</li>
+        <li>Becomes more dependent over time</li>
+        <li>Technology makes them less capable</li>
+      </ul>
+    </div>
+    <div class="vs-side vs-builder reveal-card" data-reveal="2" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+      <h4 class="green">The Builder</h4>
+      <ul>
+        <li>Uses AI to create and experiment</li>
+        <li>Makes things that didn't exist before</li>
+        <li>Becomes more capable over time</li>
+        <li>Technology amplifies their capabilities</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 21: TEXT - BUILDER TEST -->
+<!-- ============================================================ -->
+<div class="slide slide-text" data-slide="21" data-type="text">
+  <img class="watermark" src="compass.png" alt="">
+  <div class="content">
+    <p class="zen-text" style="font-size:1.8rem; color:var(--gold); font-weight:600; line-height:1.6;">
+      "Show me what you made.<br>Tell me what you learned making it."
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 22: FOUR CAPABILITIES (DIAGRAM) -->
+<!-- ============================================================ -->
+<div class="slide slide-diagram" data-slide="22" data-type="diagram">
+  <img class="watermark" src="compass.png" alt="">
+  <h3>What atrophies when students only consume</h3>
+  <div class="cap-grid" style="position:relative; z-index:1;">
+    <div class="cap-item reveal-card" data-reveal="1" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+      <h4 class="gold">Curiosity</h4>
+      <p>The drive to understand before being told it matters.</p>
+    </div>
+    <div class="cap-item reveal-card" data-reveal="2" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+      <h4 class="blue">Critical Thinking</h4>
+      <p>The ability to evaluate, not just accept.</p>
+    </div>
+    <div class="cap-item reveal-card" data-reveal="3" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+      <h4 class="orange">Creativity</h4>
+      <p>The capacity to imagine what doesn't exist yet.</p>
+    </div>
+    <div class="cap-item reveal-card" data-reveal="4" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+      <h4 class="purple">The Ability to Care</h4>
+      <p>About the answer, the outcome, the people.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 23: ECHO5 SECTION (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="23" data-type="img">
+  <img class="bg" src="img/light.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.65);"></div>
+  <div class="content">
+    <div class="section-label" style="color:var(--text-muted);">Section 3</div>
+    <h1 class="hero-text" style="font-size:5rem;">ECHO5</h1>
+    <p class="hero-sub">A practical method for the age of AI</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 24: ECHO5 PHASES (DIAGRAM) -->
+<!-- ============================================================ -->
+<div class="slide slide-diagram" data-slide="24" data-type="diagram" style="padding:0; overflow:hidden;">
+  <div style="display:flex; height:100%; width:100%;">
+    <!-- Left: phases -->
+    <div style="flex:1; padding:50px 40px 50px 70px; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1;">
+      <img class="watermark" src="compass.png" alt="" style="position:absolute; top:0; left:50%; transform:translateX(-50%); height:100%; width:100%; opacity:0.03; pointer-events:none; z-index:0; object-fit:cover;">
+      <h3>The five phases</h3>
+      <div style="margin-top: 8px; position:relative; z-index:1;">
+        <div class="echo-phase reveal-card" data-reveal="1" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+          <div class="echo-marker" style="background:var(--gold);">E<sub>1</sub></div>
+          <div class="echo-content">
+            <h4>Encourage</h4>
+            <div class="prompt">"Make uncertainty safe."</div>
+            <div class="cct">Develops Concern</div>
+          </div>
+        </div>
+        <div class="echo-phase reveal-card" data-reveal="2" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+          <div class="echo-marker" style="background:var(--blue);">E<sub>2</sub></div>
+          <div class="echo-content">
+            <h4>Enlighten</h4>
+            <div class="prompt">"Show them the landscape honestly."</div>
+            <div class="cct">Develops Curiosity</div>
+          </div>
+        </div>
+        <div class="echo-phase reveal-card" data-reveal="3" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+          <div class="echo-marker" style="background:var(--green);">E<sub>3</sub></div>
+          <div class="echo-content">
+            <h4>Empower</h4>
+            <div class="prompt">"Given what you've told me, what feels true?"</div>
+            <div class="cct">Develops Control</div>
+          </div>
+        </div>
+        <div class="echo-phase reveal-card" data-reveal="4" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+          <div class="echo-marker" style="background:var(--orange);">E<sub>4</sub></div>
+          <div class="echo-content">
+            <h4>Equip</h4>
+            <div class="prompt">"Show me what you made. Tell me what you learned."</div>
+            <div class="cct">Develops Confidence</div>
+          </div>
+        </div>
+        <div class="echo-phase reveal-card" data-reveal="5" style="opacity:0; transform:translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease;">
+          <div class="echo-marker" style="background:var(--purple);">E<sub>5</sub></div>
+          <div class="echo-content">
+            <h4>Envision</h4>
+            <div class="prompt">"What kind of person do you want to become?"</div>
+            <div class="cct">Integrates all four into Adaptability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right: stunning image -->
+    <div style="width:42%; position:relative; overflow:hidden;">
+      <img src="img/echo5-compass.png" alt="" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+      <div style="position:absolute; top:0; left:0; width:80px; height:100%; background:linear-gradient(to right, var(--bg), transparent);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 25: COMPASS VISUAL (DIAGRAM) -->
+<!-- ============================================================ -->
+<div class="slide slide-diagram" data-slide="25" data-type="diagram" style="padding:0; justify-content:center; align-items:center;">
+  <svg viewBox="0 0 600 600" width="90vh" height="90vh" style="max-width:90vw; max-height:90vh; position:relative; z-index:1;" preserveAspectRatio="xMidYMid meet">
+    <!-- Rings -->
+    <g class="reveal-card" data-reveal="1" style="opacity:0; transition: opacity 0.6s ease;">
+      <circle cx="300" cy="300" r="260" fill="none" stroke="#334155" stroke-width="1.5"/>
+      <circle cx="300" cy="300" r="190" fill="none" stroke="#1e293b" stroke-width="1"/>
+      <polygon points="300,55 530,222 443,510 157,510 70,222" stroke="#475569" stroke-width="1" fill="none" stroke-dasharray="6,4"/>
+      <line x1="300" y1="300" x2="300" y2="55" stroke="#475569" stroke-width="0.7"/>
+      <line x1="300" y1="300" x2="530" y2="222" stroke="#475569" stroke-width="0.7"/>
+      <line x1="300" y1="300" x2="443" y2="510" stroke="#475569" stroke-width="0.7"/>
+      <line x1="300" y1="300" x2="157" y2="510" stroke="#475569" stroke-width="0.7"/>
+      <line x1="300" y1="300" x2="70" y2="222" stroke="#475569" stroke-width="0.7"/>
+    </g>
+    <!-- Hub -->
+    <g class="reveal-card" data-reveal="2" style="opacity:0; transition: opacity 0.6s ease;">
+      <circle cx="300" cy="300" r="68" fill="#1a1a2e" stroke="#c9a84c" stroke-width="2.5"/>
+      <polygon points="300,238 292,258 308,258" fill="#c9a84c"/>
+      <text x="300" y="296" text-anchor="middle" fill="white" font-family="Inter" font-weight="700" font-size="20" letter-spacing="2">CURIOSITY</text>
+      <text x="300" y="320" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-weight="400" font-size="13">True North</text>
+    </g>
+    <!-- ENCOURAGE -->
+    <g class="reveal-card" data-reveal="3" style="opacity:0; transition: opacity 0.5s ease;">
+      <circle cx="300" cy="55" r="28" fill="#c9a84c"/>
+      <text x="300" y="62" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="20">E</text>
+      <text x="300" y="18" text-anchor="middle" fill="#c9a84c" font-family="Inter" font-weight="700" font-size="15">ENCOURAGE</text>
+    </g>
+    <!-- ENLIGHTEN -->
+    <g class="reveal-card" data-reveal="4" style="opacity:0; transition: opacity 0.5s ease;">
+      <circle cx="530" cy="222" r="28" fill="#3b82f6"/>
+      <text x="530" y="229" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="20">C</text>
+      <text x="572" y="222" text-anchor="start" fill="#3b82f6" font-family="Inter" font-weight="700" font-size="15">ENLIGHTEN</text>
+    </g>
+    <!-- EMPOWER -->
+    <g class="reveal-card" data-reveal="5" style="opacity:0; transition: opacity 0.5s ease;">
+      <circle cx="443" cy="510" r="28" fill="#22c55e"/>
+      <text x="443" y="517" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="20">H</text>
+      <text x="480" y="552" text-anchor="start" fill="#22c55e" font-family="Inter" font-weight="700" font-size="15">EMPOWER</text>
+    </g>
+    <!-- EQUIP -->
+    <g class="reveal-card" data-reveal="6" style="opacity:0; transition: opacity 0.5s ease;">
+      <circle cx="157" cy="510" r="28" fill="#f97316"/>
+      <text x="157" y="517" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="20">O</text>
+      <text x="120" y="552" text-anchor="end" fill="#f97316" font-family="Inter" font-weight="700" font-size="15">EQUIP</text>
+    </g>
+    <!-- ENVISION -->
+    <g class="reveal-card" data-reveal="7" style="opacity:0; transition: opacity 0.5s ease;">
+      <circle cx="70" cy="222" r="28" fill="#8b5cf6"/>
+      <text x="70" y="229" text-anchor="middle" fill="white" font-family="Inter" font-weight="800" font-size="20">5</text>
+      <text x="28" y="222" text-anchor="end" fill="#8b5cf6" font-family="Inter" font-weight="700" font-size="15">ENVISION</text>
+    </g>
+  </svg>
+  <div class="reveal-card" data-reveal="8" style="position:absolute; bottom:30px; width:100%; text-align:center; opacity:0; transform:translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease;">
+    <h2 style="font-size:1.4rem; margin:0;">The Curiosity Compass</h2>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 26: CROSSROADS (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="26" data-type="img">
+  <img class="bg" src="img/crossroads.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.6);"></div>
+  <div class="content">
+    <p style="font-size:2.2rem; font-weight:600; color:var(--gold); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.4;">"What kind of person<br>do you want to become?"</p>
+    <p style="font-size:1rem; color:var(--text-muted); margin-top:20px; text-shadow:0 2px 20px rgba(0,0,0,0.5);">is a more powerful question than<br>"What do you want to study?"</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 27: PROTECT CURIOSITY (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="27" data-type="img">
+  <img class="bg" src="img/stars.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.5);"></div>
+  <div class="content">
+    <h1 class="hero-text" style="font-size:4.5rem; color:var(--gold);">Protect their curiosity.</h1>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 28: RESOURCES (IMAGE) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="28" data-type="img">
+  <img class="bg" src="img/compass.jpg" alt="">
+  <div class="scrim" style="background:rgba(15,15,26,0.75);"></div>
+  <div class="content">
+    <h2 style="font-size:2rem; font-weight:700; text-shadow:0 4px 30px rgba(0,0,0,0.6);">The Curiosity Compass</h2>
+    <p style="font-size:1rem; color:var(--text-muted); margin-top:12px;">Framework + reference document + all sources</p>
+    <div style="margin-top:30px; display:flex; flex-direction:column; gap:16px; align-items:center;">
+      <div style="background:white; padding:16px 36px; border-radius:8px;">
+        <span style="color:var(--bg); font-size:1.4rem; font-weight:700;">vdr.me/lux</span>
+        <span style="display:block; font-size:0.7rem; color:var(--bg); opacity:0.5; margin-top:4px;">Play the game. Find your direction.</span>
+      </div>
+    </div>
+    <p style="margin-top:30px; font-size:0.85rem; color:var(--text-dim);">Victor del Rosal &middot; NCI &middot; 14 April 2026</p>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<script>
+  // ===== SLIDE NAVIGATION =====
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  document.getElementById('total').textContent = slides.length;
+
+  // Build thumbnail dots
+  (function(){
+    const strip = document.getElementById('thumbStrip');
+    for (let i = 0; i < slides.length; i++) {
+      const dot = document.createElement('div');
+      dot.dataset.idx = i;
+      dot.style.cssText = 'width:28px; height:18px; border-radius:3px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2); cursor:pointer; transition:all 0.2s ease;';
+      dot.title = 'Slide ' + (i + 1);
+      dot.onclick = function(){ show(parseInt(this.dataset.idx)); };
+      if (i === 0) { dot.style.background = 'var(--gold)'; dot.style.borderColor = 'var(--gold)'; }
+      strip.appendChild(dot);
+    }
+  })();
+
+  function updateThumbs() {
+    document.querySelectorAll('#thumbStrip > div').forEach(function(d, i) {
+      if (i === current) {
+        d.style.background = 'var(--gold)'; d.style.borderColor = 'var(--gold)'; d.style.transform = 'scaleY(1.3)';
+      } else {
+        d.style.background = 'rgba(255,255,255,0.15)'; d.style.borderColor = 'rgba(255,255,255,0.2)'; d.style.transform = 'scaleY(1)';
+      }
+    });
+  }
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, slides.length - 1));
+    slides[current].classList.add('active');
+    document.getElementById('current').textContent = current + 1;
+
+    // Reset reveals for diagram slides
+    resetReveals(current);
+
+    // Footer: show on all except slide 1
+    document.getElementById('globalFooter').style.display = current === 0 ? 'none' : 'block';
+
+    // NCI logo: show on title slide and text/diagram slides, hide on other image slides
+    const slideType = slides[current].dataset.type;
+    document.getElementById('nciLogo').style.opacity = (current === 0 || slideType !== 'img') ? '1' : '0';
+
+    // Elephant sound
+    const elephantSnd = document.getElementById('elephantSound');
+    if (elephantSnd && current !== 7) { elephantSnd.pause(); elephantSnd.currentTime = 0; }
+    if (current === 7) {
+      setTimeout(() => { if (elephantSnd) elephantSnd.play().catch(()=>{}); }, 400);
+    }
+
+    updateThumbs();
+  }
+
+  // ===== PROGRESSIVE REVEAL (diagram slides only) =====
+  let revealState = {};
+
+  function getRevealCards(idx) { return slides[idx].querySelectorAll('.reveal-card'); }
+
+  function resetReveals(idx) {
+    const cards = getRevealCards(idx);
+    cards.forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(20px)';
+      c.querySelectorAll('.bar-anim-down, .bar-anim-up').forEach(b => b.style.transform = 'scaleY(0)');
+      c.querySelectorAll('.bar-anim-right').forEach(b => b.style.transform = 'scaleX(0)');
+    });
+    revealState[idx] = 0;
+  }
+
+  function revealNext(idx) {
+    const cards = getRevealCards(idx);
+    if (cards.length === 0) return false;
+    const step = (revealState[idx] || 0) + 1;
+    const card = slides[idx].querySelector('.reveal-card[data-reveal="' + step + '"]');
+    if (card) {
+      // Dim previous
+      for (let i = 1; i < step; i++) {
+        const prev = slides[idx].querySelector('.reveal-card[data-reveal="' + i + '"]');
+        if (prev) prev.style.opacity = '0.35';
+      }
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+      revealState[idx] = step;
+      // Trigger bar animations
+      setTimeout(() => {
+        card.querySelectorAll('.bar-anim-down, .bar-anim-up').forEach(b => b.style.transform = 'scaleY(1)');
+        card.querySelectorAll('.bar-anim-right').forEach(b => b.style.transform = 'scaleX(1)');
+      }, 100);
+      // Restore all on last reveal
+      const total = cards.length;
+      if (step >= total) {
+        setTimeout(() => {
+          for (let i = 1; i <= total; i++) {
+            const c = slides[idx].querySelector('.reveal-card[data-reveal="' + i + '"]');
+            if (c) c.style.opacity = '1';
+          }
+        }, 600);
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function allRevealed(idx) {
+    const cards = getRevealCards(idx);
+    if (cards.length === 0) return true;
+    return (revealState[idx] || 0) >= cards.length;
+  }
+
+  function next() {
+    if (!allRevealed(current)) { revealNext(current); return; }
+    show(current + 1);
+  }
+
+  function prev() {
+    if ((revealState[current] || 0) > 0) { resetReveals(current); return; }
+    show(current - 1);
+  }
+
+  // ===== KEYBOARD =====
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+
+  // Touch navigation
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+  });
+</script>
+
+</body>
+</html>
