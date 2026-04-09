@@ -334,6 +334,14 @@
     0%, 100% { transform: translate(-50%,-50%) scale(1); opacity:1; }
     50% { transform: translate(-50%,-50%) scale(1.08); opacity:0.7; }
   }
+  @keyframes thankYouBreathe {
+    0%, 100% { transform: rotate(-5deg) scale(1); opacity: 0.85; }
+    50% { transform: rotate(-5deg) scale(1.08); opacity: 1; }
+  }
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
 </style>
 </head>
 <body>
@@ -412,16 +420,6 @@
     <div class="section-label" style="color:var(--text-muted);">Section 1</div>
     <h1 class="hero-text" style="font-size:4rem;">The Elephant</h1>
     <p class="hero-sub">in the room</p>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE: TEXT - FIVE YEARS -->
-<!-- ============================================================ -->
-<div class="slide slide-text" data-slide="4" data-type="text">
-  <img class="watermark" src="compass.png" alt="">
-  <div class="content">
-    <p class="zen-big zen-gold" style="font-size:5rem;">Five years.</p>
   </div>
 </div>
 
@@ -615,13 +613,128 @@
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 18: SECTION 2 (IMAGE) -->
+<!-- SLIDE: SECTION 2 - CURIOSITY IN ACTION -->
+<!-- ============================================================ -->
+<div class="slide slide-text" data-slide="s2" data-type="text">
+  <img class="watermark" src="compass.png" alt="">
+  <div class="content">
+    <div class="section-label" style="color:var(--text-muted);">Section 2</div>
+    <h1 class="hero-text" style="font-size:2.6rem; line-height:1.25; max-width:850px;">What does following your curiosity<br>in the age of AI <em style="font-style:italic; color:var(--gold);">actually</em> look like?</h1>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 1: DEMENTIA RESEARCH -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c1" data-type="img">
+  <img class="bg" src="img/curiosity-01-dementia.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">She spent three weeks using AI to understand her grandmother's dementia medication, then wrote a 4-page letter to the consultant with questions he said no family member had ever asked.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Girl, 16 &middot; Healthcare &middot; Inquiry</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 2: HIP-HOP PHYSICS -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c2" data-type="img">
+  <img class="bg" src="img/curiosity-02-hiphop.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--purple); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">He got curious why 808 bass hits feel different in your chest, followed the thread from hip-hop to sound physics to Fourier transforms, and now produces his own tracks.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Boy, 15 &middot; Music + Physics &middot; Creative</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 3: FARM DASHBOARD (BUILD) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c3" data-type="img">
+  <img class="bg" src="img/curiosity-03-farm.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--green); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Builder</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">He built a dashboard that pulls weather and soil data to alert his da when conditions put cattle at risk. Never took a coding class.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Boy, 16 &middot; Roscommon &middot; Agriculture &middot; Rural &middot; Build</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 4: GAME THEORY (LEARNING) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c4" data-type="img">
+  <img class="bg" src="img/curiosity-04-gametheory.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--blue); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Learning</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">Told she "wasn't a maths person," she got curious about why crypto crashes. Within six weeks she was teaching game theory to her own class.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Girl, 16 &middot; Mathematics &middot; Accelerated Learning</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 5: FIFA SYSTEMS -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c5" data-type="img">
+  <img class="bg" src="img/curiosity-05-fifa.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--orange); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">He kept losing at FIFA, asked AI to explain the game's hidden mechanics, discovered he loves systems thinking, and now pulls apart bus timetables and league tables for fun.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Boy, 14 &middot; Gaming + Analytics &middot; Systems Thinking</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 6: HSE TRANSLATOR (BUILD) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c6" data-type="img">
+  <img class="bg" src="img/curiosity-06-hse.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--green); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Builder</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">She built an app that translates HSE medical letters and tracks appointments for her Polish mam and three other families on her road.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Girl, 15 &middot; Polish-Irish &middot; Health Access &middot; Build</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 7: RECYCLING CAMPAIGN -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c7" data-type="img">
+  <img class="bg" src="img/curiosity-07-recycling.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">Furious about plastic waste, she used AI to map her neighbourhood's recycling gaps, designed a targeted poster campaign, and got two proposals adopted by the council.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Girl, 15 &middot; Environment &middot; Civic Advocacy</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CURIOSITY 8: AUTISM TIMER (BUILD) -->
+<!-- ============================================================ -->
+<div class="slide slide-img" data-slide="c8" data-type="img">
+  <img class="bg" src="img/curiosity-08-autism.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
+  <div class="content bottom-left" style="max-width:75%;">
+    <div style="font-size:0.7rem; color:var(--green); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Builder</div>
+    <p style="font-size:1.5rem; font-weight:600; line-height:1.4; text-shadow:0 2px 20px rgba(0,0,0,0.8);">His autistic brother melts down around homework. He built a visual timer app with calming colours and familiar characters. Three families in his area now use it.</p>
+    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:12px;">Boy, 15 &middot; Caregiving &middot; Accessibility &middot; Build</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 18: SECTION 3 (IMAGE) -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="18" data-type="img">
   <img class="bg" src="img/mentor.jpg" alt="">
   <div class="scrim" style="background:rgba(15,15,26,0.6);"></div>
   <div class="content">
-    <div class="section-label" style="color:var(--text-muted);">Section 2</div>
+    <div class="section-label" style="color:var(--text-muted);">Section 3</div>
     <h1 class="hero-text" style="font-size:2.8rem;">Your work has never been<br>about tasks.</h1>
   </div>
 </div>
@@ -710,7 +823,7 @@
   <img class="bg" src="img/light.jpg" alt="">
   <div class="scrim" style="background:rgba(15,15,26,0.65);"></div>
   <div class="content">
-    <div class="section-label" style="color:var(--text-muted);">Section 3</div>
+    <div class="section-label" style="color:var(--text-muted);">Section 4</div>
     <h1 class="hero-text" style="font-size:5rem;">ECHO5</h1>
     <p class="hero-sub">A practical method for the age of AI</p>
   </div>
@@ -864,8 +977,7 @@
   <img class="bg" src="img/crossroads.jpg" alt="">
   <div class="scrim" style="background:rgba(15,15,26,0.6);"></div>
   <div class="content">
-    <p style="font-size:2.2rem; font-weight:600; color:var(--gold); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.4;">"What kind of person<br>do you want to become?"</p>
-    <p style="font-size:1rem; color:var(--text-muted); margin-top:20px; text-shadow:0 2px 20px rgba(0,0,0,0.5);">is a more powerful question than<br>"What do you want to study?"</p>
+    <p style="font-size:2.2rem; font-weight:600; color:var(--gold); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.4;">"What matters to you<br>and how can AI help you<br>achieve it?"</p>
   </div>
 </div>
 
@@ -876,7 +988,7 @@
   <img class="bg" src="img/stars.jpg" alt="">
   <div class="scrim" style="background:rgba(15,15,26,0.5);"></div>
   <div class="content">
-    <h1 class="hero-text" style="font-size:4.5rem; color:var(--gold);">Protect their curiosity.</h1>
+    <h1 class="hero-text" style="font-size:3.5rem; color:var(--gold); line-height:1.3;">Help them discover<br>what truly matters.<br><span style="font-weight:300; font-size:2.8rem; color:var(--text-muted);">Then let them explore.</span></h1>
   </div>
 </div>
 
@@ -923,8 +1035,8 @@
       <span style="width:4px; height:4px; border-radius:50%; background:var(--gold); opacity:0.5;"></span>
       <span>14 April 2026</span>
     </div>
-    <!-- Thank you - bottom right, slanted, cursive -->
-    <div style="position:absolute; bottom:50px; right:60px; font-family:'Dancing Script', cursive; font-size:3rem; font-weight:700; color:var(--gold); transform:rotate(-5deg); text-shadow:0 4px 20px rgba(201,168,76,0.3); z-index:3;">Thank you!</div>
+    <!-- Thank you - bottom right, slanted, cursive, breathing -->
+    <div style="position:absolute; bottom:50px; right:60px; font-family:'Dancing Script', cursive; font-size:3rem; font-weight:700; color:var(--gold); text-shadow:0 4px 20px rgba(201,168,76,0.3); animation: thankYouBreathe 4s ease-in-out infinite; z-index:3;">Thank you!</div>
   </div>
 </div>
 
