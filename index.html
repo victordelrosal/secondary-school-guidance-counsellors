@@ -960,11 +960,13 @@
       nciLogo.style.opacity = slideType !== 'img' ? '1' : '0';
     }
 
-    // Elephant sound
+    // Elephant sound - find which slide contains it dynamically
     const elephantSnd = document.getElementById('elephantSound');
-    if (elephantSnd && current !== 7) { elephantSnd.pause(); elephantSnd.currentTime = 0; }
-    if (current === 7) {
-      setTimeout(() => { if (elephantSnd) elephantSnd.play().catch(()=>{}); }, 400);
+    if (elephantSnd) {
+      const elephantSlide = elephantSnd.closest('.slide');
+      const isElephantSlide = elephantSlide && elephantSlide === slides[current];
+      if (!isElephantSlide) { elephantSnd.pause(); elephantSnd.currentTime = 0; }
+      else { setTimeout(() => elephantSnd.play().catch(()=>{}), 400); }
     }
 
     updateThumbs();
