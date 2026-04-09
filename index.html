@@ -334,6 +334,11 @@
     0%, 100% { transform: translate(-50%,-50%) scale(1); opacity:1; }
     50% { transform: translate(-50%,-50%) scale(1.08); opacity:0.7; }
   }
+  @keyframes kenBurns {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
   @keyframes thankYouBreathe {
     0%, 100% { transform: rotate(-5deg) scale(1); opacity: 0.85; }
     50% { transform: rotate(-5deg) scale(1.08); opacity: 1; }
@@ -470,6 +475,10 @@
   <h3>What the numbers say</h3>
   <svg viewBox="0 0 960 480" width="100%" height="85%" preserveAspectRatio="xMidYMid meet" style="position:relative; z-index:1;">
     <text x="480" y="40" text-anchor="middle" fill="#f8fafc" font-family="Inter" font-size="22" font-weight="800">Stanford: "Canaries in the Coal Mine"</text>
+    <!-- Explainer: top-left -->
+    <text x="90" y="80" fill="#94a3b8" font-family="Inter" font-size="11" font-weight="400">Change in hiring rates for AI-exposed jobs.</text>
+    <text x="90" y="96" fill="#94a3b8" font-family="Inter" font-size="11" font-weight="400">Young workers hit hardest; experienced workers gain.</text>
+    <text x="90" y="112" fill="#64748b" font-family="Inter" font-size="10" font-weight="400" font-style="italic">"Canaries" = early warning of what's coming for all roles.</text>
     <line x1="80" y1="280" x2="880" y2="280" stroke="#334155" stroke-width="1.5"/>
     <text x="70" y="285" text-anchor="end" fill="#64748b" font-family="Inter" font-size="12">0%</text>
     <line x1="80" y1="190" x2="880" y2="190" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="5,5"/>
@@ -524,7 +533,7 @@
   <div class="content">
     <p style="font-size:5rem; font-weight:900; color:var(--red); text-shadow:0 4px 40px rgba(0,0,0,0.6);">-50%</p>
     <p style="font-size:1.3rem; font-weight:300; color:var(--text); margin-top:12px; text-shadow:0 2px 20px rgba(0,0,0,0.5);">new graduate roles at the 15 largest tech companies</p>
-    <p class="source" style="color:var(--text-dim); margin-top:20px;">SignalFire, 650M+ professional profiles</p>
+    <p class="source" style="color:var(--text-dim); margin-top:20px;">SignalFire (VC talent analytics), 650M+ LinkedIn professional profiles</p>
   </div>
 </div>
 
@@ -624,14 +633,14 @@
   <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; position:relative; z-index:1;">
     <h1 class="reveal-card" data-reveal="1" style="opacity:0; transform:translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; font-size:2.4rem; font-weight:800; text-align:center; line-height:1.3; letter-spacing:-1px;">In the age of AI<br>we need to be... <span class="gold">curious!</span></h1>
     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:32px; max-width:800px;">
-      <div class="reveal-card" data-reveal="2" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--gold);">Critical Thinking</div>
-      <div class="reveal-card" data-reveal="3" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--blue);">Creativity</div>
-      <div class="reveal-card" data-reveal="4" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--green);">Adaptability</div>
-      <div class="reveal-card" data-reveal="5" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(249,115,22,0.12); border:1px solid rgba(249,115,22,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--orange);">Resilience</div>
-      <div class="reveal-card" data-reveal="6" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--purple);">Collaboration</div>
-      <div class="reveal-card" data-reveal="7" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:#06b6d4;">Empathy</div>
-      <div class="reveal-card" data-reveal="8" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(236,72,153,0.12); border:1px solid rgba(236,72,153,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:#ec4899;">Initiative</div>
-      <div class="reveal-card" data-reveal="9" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--text);">Lifelong Learning</div>
+      <div class="reveal-card" data-reveal="2" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--gold);">Critical Thinkers</div>
+      <div class="reveal-card" data-reveal="3" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--blue);">Creative</div>
+      <div class="reveal-card" data-reveal="4" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--green);">Adaptable</div>
+      <div class="reveal-card" data-reveal="5" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(249,115,22,0.12); border:1px solid rgba(249,115,22,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--orange);">Resilient</div>
+      <div class="reveal-card" data-reveal="6" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--purple);">Collaborative</div>
+      <div class="reveal-card" data-reveal="7" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:#06b6d4;">Empathetic</div>
+      <div class="reveal-card" data-reveal="8" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(236,72,153,0.12); border:1px solid rgba(236,72,153,0.3); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:#ec4899;">Proactive</div>
+      <div class="reveal-card" data-reveal="9" style="opacity:0; transform:translateY(15px); transition: opacity 0.35s ease, transform 0.35s ease; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:30px; padding:10px 22px; font-size:0.85rem; font-weight:600; color:var(--text);">Lifelong Learners</div>
     </div>
     <div class="reveal-card" data-reveal="10" style="opacity:0; transform:translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; margin-top:28px; text-align:center;">
       <p style="font-size:1.3rem; font-weight:300; color:var(--text-muted); line-height:1.5;">Every single one starts with <strong style="color:var(--gold);">curiosity</strong>.</p>
@@ -657,7 +666,7 @@
 <!-- CURIOSITY 1: DEMENTIA RESEARCH -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c1" data-type="img">
-  <img class="bg" src="img/curiosity-01-dementia.jpg" alt="">
+  <img class="bg" src="img/curiosity-01-dementia.jpg" alt="" style="animation: kenBurns 12s ease-in-out infinite;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
@@ -670,7 +679,7 @@
 <!-- CURIOSITY 2: HIP-HOP PHYSICS -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c2" data-type="img">
-  <img class="bg" src="img/curiosity-02-hiphop.jpg" alt="">
+  <img class="bg" src="img/curiosity-02-hiphop.jpg" alt="" style="animation: kenBurns 14s ease-in-out infinite;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--purple); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
@@ -683,7 +692,7 @@
 <!-- CURIOSITY 3: FARM DASHBOARD (BUILD) -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c3" data-type="img">
-  <img class="bg" src="img/curiosity-03-farm.jpg" alt="">
+  <img class="bg" src="img/curiosity-03-farm.jpg" alt="" style="animation: kenBurns 16s ease-in-out infinite;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--green); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Builder</div>
@@ -696,7 +705,7 @@
 <!-- CURIOSITY 4: GAME THEORY (LEARNING) -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c4" data-type="img">
-  <img class="bg" src="img/curiosity-04-gametheory.jpg" alt="">
+  <img class="bg" src="img/curiosity-04-gametheory.jpg" alt="" style="animation: kenBurns 13s ease-in-out infinite;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--blue); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Learning</div>
@@ -709,7 +718,7 @@
 <!-- CURIOSITY 5: FIFA SYSTEMS -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c5" data-type="img">
-  <img class="bg" src="img/curiosity-05-fifa.jpg" alt="">
+  <img class="bg" src="img/curiosity-05-fifa.jpg" alt="" style="animation: kenBurns 15s ease-in-out infinite;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--orange); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
@@ -722,7 +731,7 @@
 <!-- CURIOSITY 6: HSE TRANSLATOR (BUILD) -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c6" data-type="img">
-  <img class="bg" src="img/curiosity-06-hse.jpg" alt="">
+  <img class="bg" src="img/curiosity-06-hse.jpg" alt="" style="animation: kenBurns 14s ease-in-out infinite 1s;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--green); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Builder</div>
@@ -735,7 +744,7 @@
 <!-- CURIOSITY 7: RECYCLING CAMPAIGN -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c7" data-type="img">
-  <img class="bg" src="img/curiosity-07-recycling.jpg" alt="">
+  <img class="bg" src="img/curiosity-07-recycling.jpg" alt="" style="animation: kenBurns 16s ease-in-out infinite 0.5s;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action</div>
@@ -748,7 +757,7 @@
 <!-- CURIOSITY 8: AUTISM TIMER (BUILD) -->
 <!-- ============================================================ -->
 <div class="slide slide-img" data-slide="c8" data-type="img">
-  <img class="bg" src="img/curiosity-08-autism.jpg" alt="">
+  <img class="bg" src="img/curiosity-08-autism.jpg" alt="" style="animation: kenBurns 13s ease-in-out infinite 0.7s;">
   <div class="scrim" style="background:linear-gradient(to top, rgba(15,15,26,0.92) 0%, rgba(15,15,26,0.3) 55%);"></div>
   <div class="content bottom-left" style="max-width:75%;">
     <div style="font-size:0.7rem; color:var(--green); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Curiosity in Action &middot; Builder</div>
@@ -983,8 +992,10 @@
 <div class="slide slide-img" data-slide="26" data-type="img">
   <img class="bg" src="img/crossroads.jpg" alt="">
   <div class="scrim" style="background:rgba(15,15,26,0.6);"></div>
+  <!-- Title: top left -->
+  <p style="position:absolute; top:50px; left:70px; z-index:2; font-size:1.1rem; font-weight:600; color:var(--text); letter-spacing:2px; text-transform:uppercase; text-shadow:0 2px 15px rgba(0,0,0,0.6);">The question really becomes...</p>
   <div class="content">
-    <p style="font-size:2.2rem; font-weight:600; color:var(--gold); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.4;">"What matters to you<br>and how can AI help you<br>achieve it?"</p>
+    <p style="font-size:2.2rem; font-weight:400; font-style:italic; font-family:'Times New Roman', Times, serif; color:var(--gold); text-shadow:0 4px 30px rgba(0,0,0,0.6); max-width:700px; line-height:1.4;">What matters to you<br>and how can AI help you<br>achieve it?</p>
   </div>
 </div>
 
@@ -996,17 +1007,6 @@
   <div class="scrim" style="background:rgba(15,15,26,0.5);"></div>
   <div class="content">
     <h1 class="hero-text" style="font-size:3.5rem; color:var(--gold); line-height:1.3;">Help them discover<br>what truly matters.<br><span style="font-weight:300; font-size:2.8rem; color:var(--text-muted);">Then let them explore.</span></h1>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- SLIDE: RELATIONSHIPS -->
-<!-- ============================================================ -->
-<div class="slide slide-img" data-slide="rel" data-type="img">
-  <img class="bg" src="img/community-connection.jpg" alt="">
-  <div class="scrim" style="background:rgba(15,15,26,0.55);"></div>
-  <div class="content">
-    <p class="zen-big zen-gold" style="font-size:5rem; text-shadow:0 4px 40px rgba(0,0,0,0.6);">Relationships.</p>
   </div>
 </div>
 
